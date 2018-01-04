@@ -1,0 +1,15 @@
+﻿
+@model KOExamApp.BLL.Dtos.ChoiceDto
+@{
+    string grpString = Model.Question.GetHashCode().ToString();
+
+        <div class="radio">
+            <label>
+                @Html.RadioButtonFor(m => m.IsAnswer, grpString, new {@Name=grpString})
+                @Html.TextBoxFor(m=>m.Text)
+            </label>
+        </div>
+    
+}
+
+

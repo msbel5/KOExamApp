@@ -1,0 +1,38 @@
+﻿@using System.Web.Optimization
+@using KOExamApp.BLL.Dtos
+@model KOExamApp.UI.ViewModels.ArticleFormViewModel
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+
+@using (Html.BeginForm("Save", "Home"))
+{
+    @Html.ValidationSummary(true, "Please fix the following error/s.")
+    <div class="form-group">
+        @Html.LabelFor(m => m.Article.Title)
+        @Html.TextBoxFor(m => m.Article.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Article.Title)
+    </div>
+    <div class="form-group" >
+        @Html.LabelFor(m => m.Article.Text)
+        @Html.TextAreaFor(m => m.Article.Text, new { @class = "form-control", @id = "summernote" })
+        @Html.ValidationMessageFor(m => m.Article.Text)
+    </div>
+
+    @Html.HiddenFor(c => c.Article.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote();
+        });
+    </script>
+}

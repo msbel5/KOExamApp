@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KOExamApp.DAL.Models;
 
-namespace KOExamApp.DAL
+namespace KOExamApp.DAL.Repositories
 {
-    public class Class1
+    public class ChoiceRepository:Repository<Choice>
     {
     }
 }

@@ -1,0 +1,61 @@
+﻿@using System.Web.Optimization
+@using KOExamApp.BLL.Dtos
+@model KOExamApp.UI.ViewModels.ExamFormViewModel
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+
+@using (Html.BeginForm("Save", "Exams", new{ Id = Model.Article.Id}))
+{
+    @Html.ValidationSummary(true, "Please fix the following error/s.")
+    <div>
+        <div class="jumbotron" style="overflow-wrap: break-word;">
+    
+            <h1>@Model.Article.Title</h1>
+
+            <p>@Html.Raw(Model.Article.Text)</p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Exam.Name)
+        @Html.TextBoxFor(m => m.Exam.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Exam.Name)
+    </div>
+    <div class="form-group">
+        @for (int i = 0; i < Model.Exam.Questions.Count; i++)
+        {
+
+            @Html.LabelFor(m => m.Exam.Questions[i].Query, (i + 1).ToString())
+            @Html.TextBoxFor(m => m.Exam.Questions[i].Query, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Exam.Questions[i].Query)
+            string grpString = Model.Exam.Questions[i].GetHashCode().ToString();
+            <div class="radio">
+                @for (int j = 0; j < Model.Exam.Questions[i].Choices.Count; j++)
+                {
+                    <div class="radio">
+                        <label>
+                            
+                            @Html.CheckBoxFor(m=>m.Exam.Questions[i].Choices[j].IsAnswer, new { @Name = grpString})
+                            @Html.TextBoxFor(m => m.Exam.Questions[i].Choices[j].Text, new {@class = "form-control"})
+                        </label>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+    @Html.ValidationSummary(true, "Please fix the following errors.")
+    @Html.HiddenFor(c => c.Exam.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+

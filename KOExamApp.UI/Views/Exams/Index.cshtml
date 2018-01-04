@@ -1,0 +1,70 @@
+﻿@model IEnumerable<KOExamApp.BLL.Dtos.ExamDto>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Exams</h2>
+
+
+<div class="table-responsive">
+    <table id="Exam" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Exam</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#Exam").DataTable({
+                ajax: {
+                    url: "/api/Exams",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, exam) {
+                            return "<a href='/exams/take/" + exam.id + "'>" + exam.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "id",
+                        render: function(data,type,exam) {
+                            return "<a href='/exams/edit/" + exam.id + "'>Edit</a>";
+                        }
+                    },
+                    {
+                        data: "id",
+                        render: function(data,type,exam) {
+                            return "<button class='btn-link js-delete' data-exam-id=" + exam.id + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#Exam").on("click",".js-delete", function () {
+                var button = $(this);
+                bootbox.confirm("Are you sure you want to delete this Exam?",
+                    function() {
+                        $.ajax({
+                            url: "/api/exams/" + button.attr("data-exam-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    });
+            });
+        });
+    </script>
+}

@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KOExamApp.DAL", "KOExamApp.DAL\KOExamApp.DAL.csproj", "{7723EA3B-2217-4F0B-8257-68DD8F8C72AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KOExamApp.BLL", "KOExamApp.BLL\KOExamApp.BLL.csproj", "{C490DFCC-2B28-4ED6-AB6E-A0B93B3902CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KOExamApp.UI", "KOExamApp.UI\KOExamApp.UI.csproj", "{4EB7B690-41DE-444B-A217-C9F392DC4EF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{7723EA3B-2217-4F0B-8257-68DD8F8C72AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7723EA3B-2217-4F0B-8257-68DD8F8C72AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7723EA3B-2217-4F0B-8257-68DD8F8C72AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C490DFCC-2B28-4ED6-AB6E-A0B93B3902CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C490DFCC-2B28-4ED6-AB6E-A0B93B3902CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C490DFCC-2B28-4ED6-AB6E-A0B93B3902CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C490DFCC-2B28-4ED6-AB6E-A0B93B3902CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EB7B690-41DE-444B-A217-C9F392DC4EF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EB7B690-41DE-444B-A217-C9F392DC4EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EB7B690-41DE-444B-A217-C9F392DC4EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EB7B690-41DE-444B-A217-C9F392DC4EF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
