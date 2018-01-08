@@ -27,7 +27,7 @@
                     string id = Model.Exam.Questions[i].Choices[j].Id.ToString();
                     <div class="choice-@id" id="@id">
                         <label>
-                            @Html.RadioButtonFor(m => m.Exam.Questions[i].Choices[j].IsAnswer, true, new { @Name = grpString, @id = id})
+                            @Html.RadioButtonFor(m => m.Exam.Questions[i].Choices[j].IsAnswer, true, new { @Name = grpString, @id = id } )
                             @Html.TextBoxFor(m => m.Exam.Questions[i].Choices[j].Text, new { @class = "form-control", @readonly = "readonly", @Name = "", @id = id })
                         </label>
                     </div>

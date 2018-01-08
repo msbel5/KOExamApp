@@ -45,7 +45,7 @@ namespace KOExamApp.UI.Controllers
                 var choicesList = choices as IList<ChoiceDto> ?? choices.ToList();
                 foreach (var choice in choices)
                 {
-                    choice.IsAnswer = null;
+                    choice.IsAnswer = false;
                 }
                 question.Choices = choicesList;
             }
@@ -84,7 +84,6 @@ namespace KOExamApp.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(ExamDto exam, int id)
         {
-
             if (!ModelState.IsValid)
             {
                 ExamDto newExam = _es.CreateExam(id);

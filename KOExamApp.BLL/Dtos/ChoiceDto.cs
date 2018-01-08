@@ -14,7 +14,7 @@ namespace KOExamApp.BLL.Dtos
         [Required]
         public string Text { get; set; }
         [Required]
-        public bool? IsAnswer { get; set; }
+        public bool IsAnswer { get; set; }
         [Required]
         public string Guid { get; set; }
         [Required]
