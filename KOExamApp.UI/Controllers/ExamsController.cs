@@ -43,6 +43,10 @@ namespace KOExamApp.UI.Controllers
             {
                 var choices = _cm.Find(m => m.QuestionId == question.Id);
                 var choicesList = choices as IList<ChoiceDto> ?? choices.ToList();
+                foreach (var choice in choices)
+                {
+                    choice.IsAnswer = null;
+                }
                 question.Choices = choicesList;
             }
             exam.Questions = questionList;
