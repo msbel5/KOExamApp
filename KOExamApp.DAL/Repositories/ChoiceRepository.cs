@@ -9,5 +9,9 @@ namespace KOExamApp.DAL.Repositories
 {
     public class ChoiceRepository:Repository<Choice>
     {
+        public Choice Get(string guid)
+        {
+            return _context.Set<Choice>().FirstOrDefault(a => a.Guid == guid);
+        }
     }
 }

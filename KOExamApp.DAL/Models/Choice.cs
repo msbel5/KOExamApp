@@ -15,6 +15,8 @@ namespace KOExamApp.DAL.Models
         [Required]
         public bool IsAnswer { get; set; }
         [Required]
+        public string Guid { get; set; }
+        [Required]
 
         public int QuestionId { get; set; }
         

@@ -9,5 +9,10 @@ namespace KOExamApp.DAL.Repositories
 {
     public class ArticleRepository:Repository<Article>
     {
+        public Article Get(string guid)
+        {
+            return _context.Set<Article>().FirstOrDefault(a => a.Guid == guid);
+        }
+        
     }
 }

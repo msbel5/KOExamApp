@@ -63,25 +63,37 @@ namespace KOExamApp.UI.Controllers
         {
             ExamDto exam = _es.CreateExam(id);
             ArticleDto article = _am.Get(id);
+            IEnumerable<ArticleDto> ddList = _am.GetAll();
+            var articleDtos = ddList as ArticleDto[] ?? ddList.ToArray();
+            SelectList slist = new SelectList(articleDtos,"Id","Title");
             
             var viewModel = new ExamFormViewModel
             {
                 Exam = exam,
-                Article = article
+                Article = article,
+                ArticleList = slist
             };
             return View("ExamForm", viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(ExamDto exam,int id)
+        public ActionResult Save(ExamDto exam, int id)
         {
 
             if (!ModelState.IsValid)
             {
-                var viewModel = new ExamFormViewModel()
+                ExamDto newExam = _es.CreateExam(id);
+                ArticleDto article = _am.Get(id);
+                IEnumerable<ArticleDto> ddList = _am.GetAll();
+                var articleDtos = ddList as ArticleDto[] ?? ddList.ToArray();
+                SelectList slist = new SelectList(articleDtos, "Id", "Title");
+
+                var viewModel = new ExamFormViewModel
                 {
-                    Exam =exam
+                    Exam = newExam,
+                    Article = article,
+                    ArticleList = slist
                 };
                 return View("ExamForm", viewModel);
             }
@@ -89,6 +101,12 @@ namespace KOExamApp.UI.Controllers
             {
                 exam.ArticleId = id;
                 _em.Add(exam);
+                foreach (var choice in exam.CorrectChoicesGuid)
+                {
+                    var choiceInDb = _cm.Get(choice);
+                    choiceInDb.IsAnswer = true;
+                    _cm.Update(choiceInDb.Id, choiceInDb);
+                }
             }
             else
             {
@@ -98,6 +116,12 @@ namespace KOExamApp.UI.Controllers
                 var updateExamDto = Mapper.Map(exam, examInDb);
                 updateExamDto.ArticleId = articleInDb.Id;
                 _em.Update(examId, updateExamDto);
+                foreach (var choice in exam.CorrectChoicesGuid)
+                {
+                    var choiceInDb = _cm.Get(choice);
+                    choiceInDb.IsAnswer = true;
+                    _cm.Update(choiceInDb.Id, choiceInDb);
+                }
             }
             return RedirectToAction("Index", "Exams");
         }
@@ -119,10 +143,15 @@ namespace KOExamApp.UI.Controllers
             if (exam == null)
                 return HttpNotFound();
 
-            var viewModel = new ExamFormViewModel()
+            IEnumerable<ArticleDto> ddList = _am.GetAll();
+            var articleDtos = ddList as ArticleDto[] ?? ddList.ToArray();
+            SelectList slist = new SelectList(articleDtos, "Id", "Title");
+
+            var viewModel = new ExamFormViewModel
             {
                 Exam = exam,
-                Article = article
+                Article = article,
+                ArticleList = slist
             };
             return View("ExamForm", viewModel);
         }

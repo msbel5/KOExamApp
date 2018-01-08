@@ -7,13 +7,13 @@ namespace KOExamApp.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class changeBooltoBitChoice : IMigrationMetadata
+    public sealed partial class addGuidToArticle : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(changeBooltoBitChoice));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addGuidToArticle));
         
         string IMigrationMetadata.Id
         {
-            get { return "201801040214514_changeBooltoBitChoice"; }
+            get { return "201801072225039_addGuidToArticle"; }
         }
         
         string IMigrationMetadata.Source

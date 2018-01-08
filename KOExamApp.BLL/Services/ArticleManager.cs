@@ -25,6 +25,12 @@ namespace KOExamApp.BLL.Services
             return Mapper.Map<Article, ArticleDto>(articleInDb);
         }
 
+        public ArticleDto Get(string guid)
+        {
+            var articleInDb = _repository.Get(guid);
+            return Mapper.Map<Article, ArticleDto>(articleInDb);
+        }
+
         public IEnumerable<ArticleDto> GetAll()
         {
             var articleInDb = _repository.GetAll();

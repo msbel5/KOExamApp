@@ -24,6 +24,11 @@ namespace KOExamApp.BLL.Services
             var choiceInDb = _repository.Get(id);
             return Mapper.Map<Choice, ChoiceDto>(choiceInDb);
         }
+        public ChoiceDto Get(string guid)
+        {
+            var choiceInDb = _repository.Get(guid);
+            return Mapper.Map<Choice, ChoiceDto>(choiceInDb);
+        }
 
         public IEnumerable<ChoiceDto> GetAll()
         {

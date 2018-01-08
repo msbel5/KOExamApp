@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Optimization;
 using AutoMapper;
 using KOExamApp.BLL.Configurations;
+using KOExamApp.BLL.Services;
 
 namespace KOExamApp.UI
 {
@@ -17,6 +18,7 @@ namespace KOExamApp.UI
     {
         void Application_Start(object sender, EventArgs e)
         {
+
             // Code that runs on application startup
             Mapper.Initialize(c => c.AddProfile<MappingProfile>());
             AreaRegistration.RegisterAllAreas();

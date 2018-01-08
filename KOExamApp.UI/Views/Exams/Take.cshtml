@@ -10,31 +10,29 @@
 
 <div>
     <div class="jumbotron" style="overflow-wrap: break-word;">
-
-        <h2>@Model.Article.Title</h2>
-
         <p>@Html.Raw(Model.Article.Text)</p>
     </div>
 </div>
 
-<div class="form-group" id="test">
+<div class="form-group row" id="test">
     @for (int i = 0; i < Model.Exam.Questions.Count; i++)
     {
-
-        @Html.LabelFor(m => m.Exam.Questions[i].Query, (i + 1).ToString())
-        @Html.TextBoxFor(m => m.Exam.Questions[i].Query, new { @class = "form-control", @readonly = "readonly", @Name = "" })
-        string grpString = Model.Exam.Questions[i].GetHashCode().ToString();
-        <div class="radio">
-            @for (int j = 0; j < Model.Exam.Questions[i].Choices.Count; j++)
-            {
-                string id = Model.Exam.Questions[i].Choices[j].Id.ToString();
-                <div class="choice-@id" id="@id">
-                    <label>
-                        @Html.RadioButtonFor(m => m.Exam.Questions[i].Choices[j].IsAnswer, true, new { @Name = grpString, @id = id })
-                        @Html.TextBoxFor(m => m.Exam.Questions[i].Choices[j].Text, new { @class = "form-control" , @readonly = "readonly", @Name = "", @id=id  })
-                    </label>
-                </div>
-            }
+        <div class="col-xs-6">
+            @Html.LabelFor(m => m.Exam.Questions[i].Query, (i + 1).ToString())
+            @Html.TextBoxFor(m => m.Exam.Questions[i].Query, new { @class = "form-control", @readonly = "readonly", @Name = "" })
+            @{string grpString = Model.Exam.Questions[i].GetHashCode().ToString();}
+            <div class="radio">
+                @for (int j = 0; j < Model.Exam.Questions[i].Choices.Count; j++)
+                {
+                    string id = Model.Exam.Questions[i].Choices[j].Id.ToString();
+                    <div class="choice-@id" id="@id">
+                        <label>
+                            @Html.RadioButtonFor(m => m.Exam.Questions[i].Choices[j].IsAnswer, true, new { @Name = grpString, @id = id })
+                            @Html.TextBoxFor(m => m.Exam.Questions[i].Choices[j].Text, new { @class = "form-control", @readonly = "readonly", @Name = "", @id = id })
+                        </label>
+                    </div>
+                }
+            </div>
         </div>
     }
     <div style="align-content: center; text-align: center">
@@ -50,32 +48,32 @@
 
 
         $("button").click(
-            function () {
-
-                
-
-                $(':checked').each(function () {
+            function() {
+                $(':checked').each(function() {
                     var id = $(this).attr("id");
-                    
+
                     $.ajax({
                         url: "/api/choices/" + id,
                         method: "GET",
                         context: this,
-                        success: function (result) {
-                            if (result.isAnswer == 0) {
+                        success: function(result) {
+                            if (result.isAnswer == false) {
                                 $("#" + id + ".form-control").css("background-color", "red");
 
                             } else {
                                 $("#" + id + ".form-control").css("background-color", "green");
                             }
                         },
-                        error: function (e) {
+                        error: function(e) {
                             alert(e.message);
                         }
 
                     });
                 });
-
+                $(':radio').not(':checked').each(function() {
+                    var id = $(this).attr("id");
+                    $("#" + id + ".form-control").css("background-color", "");
+                });
             });
     </script>
 }

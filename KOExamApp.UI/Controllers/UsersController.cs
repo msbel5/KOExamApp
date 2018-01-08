@@ -15,7 +15,7 @@ namespace KOExamApp.UI.Controllers
 
         public UsersController()
         {
-            _um=new UserManager();
+            _um = new UserManager();
         }
 
         [HttpGet]
@@ -29,17 +29,12 @@ namespace KOExamApp.UI.Controllers
         {
             if (!ModelState.IsValid)
             {
-
-                var userInDb = _um.Find(x => x.UserName == user.UserName).First();
-                if (user.Password==userInDb.Password)
+                if (_um.Get(user.UserName, user.Password)!=null)
                 {
                     FormsAuthentication.SetAuthCookie(user.UserName, user.RememberMe);
                     return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Check your credentials!");
-                }
+                ModelState.AddModelError("", "Check your credentials!");
             }
             return View(user);
         }

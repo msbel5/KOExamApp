@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 using AutoMapper;
 using KOExamApp.BLL.Dtos;
 using KOExamApp.BLL.Services;
 using KOExamApp.UI.ViewModels;
+using OpenQA.Selenium;
+using OpenQA.Selenium.PhantomJS;
 
 namespace KOExamApp.UI.Controllers
 {
@@ -14,11 +18,20 @@ namespace KOExamApp.UI.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        ArticleManager  _am;
+        private ArticleManager _am;
+
+        private QuestionManager _qm;
+        private ChoiceManager _cm;
+        private ExamManager _em;
+        private ExamService _es;
 
         public HomeController()
         {
-            _am= new ArticleManager();
+            _am = new ArticleManager();
+            _es = new ExamService();
+            _em= new ExamManager();
+            _cm = new ChoiceManager();
+            _qm = new QuestionManager();
         }
         public ActionResult Index()
         {
@@ -35,9 +48,10 @@ namespace KOExamApp.UI.Controllers
 
         public ActionResult New()
         {
+            string guid = Guid.NewGuid().ToString();
             var viewModel = new ArticleFormViewModel
             {
-                Article = new ArticleDto()
+                Article = new ArticleDto { Guid = guid}
             };
             return View("ArticleForm", viewModel);
         }
@@ -81,5 +95,20 @@ namespace KOExamApp.UI.Controllers
             };
             return View("ArticleForm", viewModel);
         }
+
+        public ActionResult PopulateArticleTable()
+        {
+            _es.PopulateArticleTable();
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult NewExam()
+        {
+            _es.PopulateArticleTable();
+            int articleId = _am.GetAll().First().Id;
+            return RedirectToAction("New", "Exams", new { id = articleId });
+        }
+
+
     }
 }

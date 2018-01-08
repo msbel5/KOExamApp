@@ -16,6 +16,8 @@ namespace KOExamApp.DAL.Models
         [Required]
         [AllowHtml]
         public string Text { get; set; }
+        [Required]
+        public string Guid { get; set; }
 
         private IList<Exam> _exams = new List<Exam>();
         public IList<Exam> Exams

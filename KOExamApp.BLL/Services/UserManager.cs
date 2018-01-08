@@ -25,6 +25,12 @@ namespace KOExamApp.BLL.Services
             return Mapper.Map<User, UserDto>(userInDb);
         }
 
+        public UserDto Get(string userName, string password)
+        {
+            var userInDb = _repository.Get(userName,password);
+            return Mapper.Map<User, UserDto>(userInDb);
+        }
+
         public IEnumerable<UserDto> GetAll()
         {
             var userInDb = _repository.GetAll();

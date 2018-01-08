@@ -18,6 +18,8 @@ namespace KOExamApp.BLL.Dtos
         [AllowHtml]
         [Display(Name = "Content")]
         public string Text { get; set; }
+        [Required]
+        public string Guid { get; set; }
 
         private IList<ExamDto> _exams = new List<ExamDto>();
         public IList<ExamDto> Exams

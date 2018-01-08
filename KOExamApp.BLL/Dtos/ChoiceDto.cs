@@ -16,9 +16,11 @@ namespace KOExamApp.BLL.Dtos
         [Required]
         public bool IsAnswer { get; set; }
         [Required]
-
+        public string Guid { get; set; }
+        [Required]
         public int QuestionId { get; set; }
 
         public QuestionDto Question { get; set; }
+        public int OrderNum { get; set; }
     }
 }

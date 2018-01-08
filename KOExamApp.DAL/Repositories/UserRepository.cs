@@ -9,5 +9,9 @@ namespace KOExamApp.DAL.Repositories
 {
     public class UserRepository:Repository<User>
     {
+        public User Get(string userName,string password)
+        {
+            return _context.Set<User>().FirstOrDefault(a => a.UserName == userName && a.Password==password);
+        }
     }
 }

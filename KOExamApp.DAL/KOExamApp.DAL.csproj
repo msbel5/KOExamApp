@@ -121,13 +121,13 @@
     <Compile Include="Migrations\201801032058458_addarticle.Designer.cs">
       <DependentUpon>201801032058458_addarticle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801040214514_changeBooltoBitChoice.cs" />
-    <Compile Include="Migrations\201801040214514_changeBooltoBitChoice.Designer.cs">
-      <DependentUpon>201801040214514_changeBooltoBitChoice.cs</DependentUpon>
+    <Compile Include="Migrations\201801072225039_addGuidToArticle.cs" />
+    <Compile Include="Migrations\201801072225039_addGuidToArticle.Designer.cs">
+      <DependentUpon>201801072225039_addGuidToArticle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801040220479_rollbackbooltobit.cs" />
-    <Compile Include="Migrations\201801040220479_rollbackbooltobit.Designer.cs">
-      <DependentUpon>201801040220479_rollbackbooltobit.cs</DependentUpon>
+    <Compile Include="Migrations\201801080047499_addGuidtoChoice.cs" />
+    <Compile Include="Migrations\201801080047499_addGuidtoChoice.Designer.cs">
+      <DependentUpon>201801080047499_addGuidtoChoice.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
@@ -181,11 +181,11 @@
     <EmbeddedResource Include="Migrations\201801032058458_addarticle.resx">
       <DependentUpon>201801032058458_addarticle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801040214514_changeBooltoBitChoice.resx">
-      <DependentUpon>201801040214514_changeBooltoBitChoice.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801072225039_addGuidToArticle.resx">
+      <DependentUpon>201801072225039_addGuidToArticle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801040220479_rollbackbooltobit.resx">
-      <DependentUpon>201801040220479_rollbackbooltobit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801080047499_addGuidtoChoice.resx">
+      <DependentUpon>201801080047499_addGuidtoChoice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

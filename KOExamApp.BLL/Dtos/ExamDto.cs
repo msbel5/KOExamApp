@@ -39,5 +39,7 @@ namespace KOExamApp.BLL.Dtos
         {
             _questions.Add(question);
         }
+
+        public List<string> CorrectChoicesGuid { get; set; }
     }
 }

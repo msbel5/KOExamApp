@@ -7,13 +7,13 @@ namespace KOExamApp.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class rollbackbooltobit : IMigrationMetadata
+    public sealed partial class addGuidtoChoice : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(rollbackbooltobit));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addGuidtoChoice));
         
         string IMigrationMetadata.Id
         {
-            get { return "201801040220479_rollbackbooltobit"; }
+            get { return "201801080047499_addGuidtoChoice"; }
         }
         
         string IMigrationMetadata.Source
