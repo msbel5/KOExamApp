@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +13,7 @@ using KOExamApp.UI.ViewModels;
 namespace KOExamApp.UI.Controllers
 {
     [Authorize]
+    [HandleError(ExceptionType = typeof(DbUpdateException), View = "Error")]
     public class ExamsController : Controller
     {
         private ExamManager _em;
@@ -29,11 +31,12 @@ namespace KOExamApp.UI.Controllers
             _cm = new ChoiceManager();
         }
         // GET: Exams
+        [AllowAnonymous]//for publishing
         public ActionResult Index()
         {
             return View();
         }
-
+        [AllowAnonymous]//for publishing
         public ActionResult Take(int id)
         {
             var exam = _em.Get(id);

@@ -5,8 +5,9 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using HtmlAgilityPack;
 using KOExamApp.BLL.Dtos;
-using OpenQA.Selenium.PhantomJS;
+
 
 namespace KOExamApp.BLL.Services
 {
@@ -80,11 +81,12 @@ namespace KOExamApp.BLL.Services
 
         public string ArticleCreater(string articleUrl)
         {
-            var driver = new PhantomJSDriver();
-            driver.Navigate().GoToUrl(articleUrl);
-            var articleDiv = driver.FindElementByCssSelector(".article-body-component>div").GetAttribute("outerHTML");
-            var articleTitle = driver.FindElementByClassName("title").GetAttribute("outerHTML");
-            var articleAuthor = driver.FindElementByClassName("byline-component__link").GetAttribute("innerHTML");
+            HtmlWeb web = new HtmlWeb();
+            HtmlDocument doc = web.Load(articleUrl);
+
+            var articleDiv = doc.QuerySelector(".article-body-component>div").OuterHtml;
+            var articleTitle = doc.QuerySelector("h1.title").OuterHtml;
+            var articleAuthor = doc.QuerySelector("a.byline-component__link").InnerHtml;
 
             string rawHtml = "<div class = 'article'>" + articleTitle + articleDiv + articleAuthor + "</div>";
 

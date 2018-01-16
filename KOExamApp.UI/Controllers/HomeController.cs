@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,6 +16,7 @@ using OpenQA.Selenium.PhantomJS;
 namespace KOExamApp.UI.Controllers
 {
     [Authorize]
+    [HandleError(ExceptionType = typeof(DbUpdateException), View = "Error")]
     public class HomeController : Controller
     {
         // GET: Home
@@ -33,11 +35,12 @@ namespace KOExamApp.UI.Controllers
             _cm = new ChoiceManager();
             _qm = new QuestionManager();
         }
+        [AllowAnonymous]//for publishing
         public ActionResult Index()
         {
             return View();
         }
-
+        [AllowAnonymous]//for publishing
         public ActionResult Details(int id)
         {
             var article = _am.Get(id);
@@ -95,7 +98,7 @@ namespace KOExamApp.UI.Controllers
             };
             return View("ArticleForm", viewModel);
         }
-
+        [AllowAnonymous]//for publishing
         public ActionResult PopulateArticleTable()
         {
             _es.PopulateArticleTable();
@@ -108,7 +111,6 @@ namespace KOExamApp.UI.Controllers
             int articleId = _am.GetAll().First().Id;
             return RedirectToAction("New", "Exams", new { id = articleId });
         }
-
 
     }
 }

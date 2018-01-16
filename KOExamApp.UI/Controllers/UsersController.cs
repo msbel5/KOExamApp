@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,6 +10,7 @@ using KOExamApp.BLL.Services;
 
 namespace KOExamApp.UI.Controllers
 {
+    [HandleError(ExceptionType = typeof(DbUpdateException), View = "Error")]
     public class UsersController : Controller
     {
         private UserManager _um;
@@ -43,7 +45,7 @@ namespace KOExamApp.UI.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
-
+        [Authorize]//for publishing
         public ActionResult Register()
         {
             return View();
