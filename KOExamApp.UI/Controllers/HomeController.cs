@@ -10,8 +10,6 @@ using AutoMapper;
 using KOExamApp.BLL.Dtos;
 using KOExamApp.BLL.Services;
 using KOExamApp.UI.ViewModels;
-using OpenQA.Selenium;
-using OpenQA.Selenium.PhantomJS;
 
 namespace KOExamApp.UI.Controllers
 {
