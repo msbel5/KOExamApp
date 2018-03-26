@@ -30,13 +30,5 @@ namespace KOExamApp.UI
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-        protected void Application_Error()
-        {
-            Exception ex = Server.GetLastError();
-            if (ex is ThreadAbortException)
-                return;
-            
-            Response.Redirect("Error.cshtml");
-        }
     }
 }
