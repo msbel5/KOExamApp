@@ -10,7 +10,7 @@ using KOExamApp.BLL.Services;
 
 namespace KOExamApp.UI.Controllers
 {
-    [HandleError(ExceptionType = typeof(DbUpdateException), View = "Error")]
+   
     public class UsersController : Controller
     {
         private UserManager _um;

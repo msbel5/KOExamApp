@@ -13,7 +13,6 @@ using KOExamApp.UI.ViewModels;
 namespace KOExamApp.UI.Controllers
 {
     [Authorize]
-    [HandleError(ExceptionType = typeof(DbUpdateException), View = "Error")]
     public class ExamsController : Controller
     {
         private ExamManager _em;

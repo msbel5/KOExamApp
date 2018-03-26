@@ -14,7 +14,6 @@ using KOExamApp.UI.ViewModels;
 namespace KOExamApp.UI.Controllers
 {
     [Authorize]
-    [HandleError(ExceptionType = typeof(DbUpdateException), View = "Error")]
     public class HomeController : Controller
     {
         // GET: Home
