@@ -11,9 +11,9 @@ KOExamApp is an interactive web application designed for creating and taking qui
 - **User Authentication:** Secure login and registration system for users to access personalized features.
 
 ## Technical Details
-- **Controllers:** The application uses MVC architecture with controllers like `ArticlesController` and `ExamsController` for managing articles and exams.
-- **Views:** Views like `Index.cshtml`, `Create.cshtml`, `Edit.cshtml`, `Details.cshtml`, and `Delete.cshtml` in the Exams section provide the user interface for quiz and exam management.
-- **Scripts:** jQuery scripts are used for dynamic content loading and interactive features on exam pages.
+- The application is structured into several layers, including Business Logic Layer (BLL), Data Access Layer (DAL), and User Interface (UI).
+- It utilizes various technologies and frameworks for efficient operation and user-friendly interface.
+
 
 ## Usage
 - **For Teachers:** Create quizzes based on automatically fetched articles or custom content. Manage quizzes through an intuitive interface.
